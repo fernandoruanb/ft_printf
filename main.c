@@ -79,7 +79,7 @@ int	main(void)
 	ft_printf("Número grande: %d\n", 2147483647);
 	ft_printf("Número negativo grande: %d\n", -2147483648);
 	ft_printf("Mix: %s %d %x\n", "Valor", 255, 255);
-	ft_printf("Caractere negativo: %c\n", -100);
+	ft_printf("Caractere negativo (tem que sair esquisito, ASCII negativo): %c\n", -100);
 	ft_printf("Limite unsigned: %u\n", 4294967295);
 	ft_printf("Hexadecimal com prefixo: 0x%x\n", 48879);
 	return (0);

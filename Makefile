@@ -53,9 +53,20 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) 
+	rm -f myPrintf
 
 # restart
 
 re: fclean $(NAME)
 
+# compile with main.c
+
+test:
+	cc ft_printf.c convert_*.c ft_strlen.c handle*.c main.c parse*.c print*.c -I . -o myPrintf 
+
+# compile with main2.c to extra tests
+
+test2:
+	cc ft_printf.c convert_*.c ft_strlen.c handle*.c main2.c parse*.c print*.c -I . -o myPrintf 
+	
 .PHONY: all fclean clean re
