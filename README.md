@@ -4,8 +4,7 @@
 </p>
 
 <h1 align="center">
-  <br>
-  <a href="https://github.com/SEU_USUARIO/ft_printf">
+  <a href="https://github.com/fernandoruanb/ft_printf">
     <img src="https://github.com/ayogun/42-project-badges/raw/main/badges/ft_printfe.png" alt="ft_printf badge" width="200">
   </a>
   <br>
