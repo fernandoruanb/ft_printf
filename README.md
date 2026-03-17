@@ -1,199 +1,244 @@
-<h1 style="text-align: center;">FT_PRINTF</h1>
-<img src="https://cdn.pixabay.com/photo/2016/10/27/06/38/tea-time-1773531_1280.png"\>
 
-## 📜 Sobre o Projeto
+<p align="center">
+  <img src="https://github.com/ayogun/42-project-badges/raw/main/covers/cover-ft_printf.png" alt="ft_printf cover" width="100%">
+</p>
 
-O **ft_printf** surge no **segundo milestone** da grande jornada na **École 42**.
+<h1 align="center">
+  <br>
+  <a href="https://github.com/SEU_USUARIO/ft_printf">
+    <img src="https://github.com/ayogun/42-project-badges/raw/main/badges/ft_printfe.png" alt="ft_printf badge" width="200">
+  </a>
+  <br>
+  ft_printf
+  <br>
+</h1>
 
-Uma maneira simples de entender esse projeto é imaginar o **ft_printf como um garçom**.
+<h4 align="center">
+  A custom formatted output function built from scratch in <a href="https://www.c-language.org/" target="_blank">C</a>.
+</h4>
 
-Durante o processo de formação na 42, começamos implementando diversas funções básicas de saída.  
-Entre as primeiras estão:
+<p align="center">
+  <img src="https://img.shields.io/badge/Final%20Score-100%2F100-00C853?style=for-the-badge" alt="Final Score 100/100">
+  <img src="https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c" alt="Language C">
+  <img src="https://img.shields.io/badge/Build-Makefile-orange?style=for-the-badge" alt="Build Makefile">
+  <img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge" alt="Status Completed">
+</p>
 
-- `ft_putchar` → imprime um único caractere
-- `ft_putnbr` → imprime um número
-- `ft_putstr` → imprime uma string completa
-
-Cada função possui uma responsabilidade específica.  
-Porém, surge um problema natural:
-
-> E se quisermos uma única função capaz de organizar e imprimir diferentes tipos de dados?
-
-Em vez de chamar várias funções diferentes manualmente, seria muito mais interessante possuir **um sistema centralizado**, capaz de interpretar o que desejamos imprimir e então chamar internamente o serviço correto.
-
-É exatamente aqui que entra o **ft_printf**.
-
-Assim como um garçom em um restaurante:
-
-1. O garçom recebe o pedido.
-2. Ele interpreta o que foi solicitado.
-3. Ele encaminha o pedido correto para o setor responsável.
-
-Da mesma forma, **ft_printf recebe uma string de formatação**, interpreta seu conteúdo e chama a função interna apropriada para imprimir os dados desejados.
+<p align="center">
+  <a href="#about-the-project">About</a> •
+  <a href="#variadic-functions">Variadic Functions</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#supported-conversions">Supported Conversions</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#team">Team</a>
+</p>
 
 ---
 
-## ⚙️ Funções Variádicas
+<!-- Replace with your own GIF -->
+<!-- ![demo](./assets/ft_printf-demo.gif) -->
 
-Um dos aspectos mais interessantes do **ft_printf** é o início do uso de **funções variádicas**.
+## About the Project
 
-Diferente das funções tradicionais, que recebem uma quantidade fixa de argumentos, as funções variádicas permitem trabalhar com **um número indefinido de parâmetros**.
+**ft_printf** appears in the early stages of the journey at **École 42** as a project designed to make formatted output truly understandable.
 
-Para isso utilizamos os seguintes recursos da linguagem C:
+A simple way to understand it is to imagine **ft_printf as a waiter**.
+
+At the beginning of the C journey, we usually build small output functions such as:
+
+- `ft_putchar` → prints a single character
+- `ft_putnbr` → prints a number
+- `ft_putstr` → prints a full string
+
+Each function has one specific responsibility.
+
+But then a natural question appears:
+
+> What if we want a single function capable of organizing and printing many different types of data?
+
+Instead of manually calling several output functions, it is much more powerful to create **one central system** capable of interpreting a format string and dispatching each value to the correct internal handler.
+
+That is exactly what **ft_printf** does.
+
+Like a waiter in a restaurant:
+
+1. It receives the order.
+2. It interprets what was requested.
+3. It forwards each request to the right place.
+
+In the same way, **ft_printf receives a format string**, parses it, identifies each conversion specifier, and calls the correct internal function to print the requested data.
+
+---
+
+## Variadic Functions
+
+One of the most important concepts introduced by **ft_printf** is the use of **variadic functions**.
+
+Unlike regular functions, which receive a fixed number of parameters, variadic functions can handle **an undefined number of arguments**.
+
+To make that possible, C provides the following tools:
 
 - `va_list`
 - `va_start`
 - `va_arg`
 - `va_end`
 
-Esses mecanismos permitem percorrer uma lista de argumentos dinamicamente, possibilitando que o programa interprete e utilize diferentes tipos de dados conforme necessário.
+These mechanisms allow us to traverse the argument list dynamically and extract each value according to the format specifier currently being parsed.
+
+This is one of the core ideas behind how `printf` works internally.
 
 ---
 
-## 🎯 Objetivo do Projeto
+## How It Works
 
-Inspirado no **printf original da linguagem C**, o objetivo do **ft_printf** é reproduzir parte de seu comportamento, tornando seus mecanismos internos compreensíveis.
+The logic of **ft_printf** is simple in concept, but very powerful in practice.
 
-Ao implementar esse projeto do zero, aprendemos conceitos fundamentais como:
+Just like the original `printf`, the function must **return the total number of characters printed**.
 
-- funcionamento da saída formatada
-- interpretação de strings de formatação
-- uso de **argumentos variádicos**
-- organização de funções de impressão de forma modular
+### 1. Variadic argument initialization
 
-Em outras palavras, o **ft_printf transforma o funcionamento abstrato do `printf` em algo palpável e implementável**, permitindo compreender como essa ferramenta tão poderosa realmente funciona internamente.
-
-Aqui está seu texto **organizado em Markdown**, mantendo sua explicação técnica mas estruturando de forma clara para um **README de projeto**.
-
-## ⚙️ Como o ft_printf Funciona
-
-O funcionamento do **ft_printf** segue uma lógica simples, porém poderosa.
-
-Assim como o `printf` original da linguagem C, a função **sempre retorna a quantidade total de caracteres que foram impressos**.
-
-### 1. Inicialização dos argumentos variádicos
-
-Primeiramente, inicializamos uma lista de argumentos utilizando `va_list`.  
-Isso permite acessar todos os parâmetros adicionais que o usuário passou para a função.
+First, the variadic list is initialized:
 
 ```c
 va_list args;
 va_start(args, format);
 ````
 
-A partir desse momento, temos acesso a todos os argumentos fornecidos.
+At that point, the function gains access to all extra arguments passed by the user.
 
----
+### 2. Parsing the format string
 
-### 2. Parsing da string de formatação
+The format string is then analyzed character by character.
 
-A string de formatação é então enviada para uma função responsável por analisá-la, chamada aqui de **parse_format**.
+Two situations may happen:
 
-Essa função percorre a string **caractere por caractere**, interpretando o que deve ser feito.
+* A **regular character** is found
+  It is printed directly, and the total printed character count is incremented.
 
-Existem dois cenários possíveis:
+* A **special character `%`** is found
+  This means a conversion specifier is coming next.
 
-* **Caractere normal**
-  Se o caractere não possui nenhum significado especial, ele é simplesmente impresso e o contador de caracteres é incrementado.
+### 3. Detecting the specifier
 
-* **Caractere especial `%`**
-  Quando encontramos `%`, significa que um **especificador de formatação** está chegando.
+Once `%` is found, the next character is checked to determine what must be printed.
 
----
+### 4. Calling the correct handler
 
-### 3. Identificação do especificador
+If the specifier is `%s`, the string handler is called.
+If it is `%d`, the integer handler is called.
+If it is `%x`, the hexadecimal handler is called, and so on.
 
-Após encontrar `%`, verificamos qual especificador vem logo em seguida.
+At that moment, `va_arg(args, type)` is used to fetch the next value from the argument list.
 
-Por exemplo:
+### 5. Printing and counting
 
-| Especificador | Significado       |
-| ------------- | ----------------- |
-| `%c`          | caractere         |
-| `%s`          | string            |
-| `%d` / `%i`   | número inteiro    |
-| `%u`          | inteiro sem sinal |
-| `%x` / `%X`   | hexadecimal       |
-| `%p`          | ponteiro          |
-| `%%`          | imprime `%`       |
+Each handler:
 
-Cada especificador possui uma **função específica responsável por tratá-lo**.
+1. receives the value
+2. processes it if needed
+3. prints it
+4. updates the total character counter
 
----
+### 6. Final return
 
-### 4. Chamada da função responsável
-
-Se o especificador for, por exemplo, `%s`, a função responsável por strings é chamada.
-
-Nesse momento utilizamos:
+After the whole format string has been parsed and everything has been printed, the function returns the total number of printed characters.
 
 ```c
-va_arg(args, tipo)
-```
-
-Isso nos permite **obter o próximo valor da lista de argumentos**, que foi passado pelo usuário.
-
-Após a leitura, a lista de argumentos **avança automaticamente para o próximo valor**, ficando pronta para a próxima consulta.
-
----
-
-### 5. Impressão e contagem
-
-A função responsável então:
-
-1. Trata o dado recebido
-2. Imprime o valor no output
-3. Incrementa o contador de caracteres impressos
-
-Esse contador é essencial para **simular o comportamento real do `printf`**.
-
----
-
-### 6. Retorno final
-
-Após toda a string de formatação ser analisada e todos os dados serem impressos, o **ft_printf retorna o total de caracteres impressos**.
-
-```c
-return total_characters_printed;
+return total_printed_chars;
 ```
 
 ---
 
-## 🍽️ A dinâmica do "garçom"
+## Supported Conversions
 
-A metáfora do **garçom** ajuda a visualizar o funcionamento do ft_printf:
+The mandatory version of **ft_printf** supports the classic conversion specifiers below:
 
-1. O cliente faz o pedido (argumentos da função).
-2. O garçom lê o pedido (parse da string).
-3. Ele identifica o tipo de pedido (`%s`, `%d`, `%x`, etc).
-4. Ele chama o setor correto da cozinha (função específica).
-5. O prato é entregue ao cliente (impressão no output).
-6. Ao final, o garçom conta quantos pratos foram servidos (total de caracteres).
+| Specifier | Meaning               |
+| --------- | --------------------- |
+| `%c`      | character             |
+| `%s`      | string                |
+| `%p`      | pointer address       |
+| `%d`      | signed decimal        |
+| `%i`      | signed integer        |
+| `%u`      | unsigned decimal      |
+| `%x`      | lowercase hexadecimal |
+| `%X`      | uppercase hexadecimal |
+| `%%`      | literal percent sign  |
 
-Assim, o **ft_printf atua como um sistema central que recebe pedidos, interpreta instruções e encaminha cada tarefa para a função responsável**, reproduzindo o comportamento do `printf` original de forma modular.
+---
+<html>
+<img src="https://cdn.pixabay.com/photo/2016/10/27/06/38/tea-time-1773531_1280.png"\>
+</html>
 
-## How to use
+## The "Waiter" Analogy
 
-Da mesma forma como no projeto **Libft**, precisamos apenas compilar o projeto usando o comando:
+The waiter analogy is a very intuitive way to visualize the project:
+
+1. The client places the order.
+2. The waiter reads and understands it.
+3. The waiter identifies what is needed.
+4. The waiter sends each request to the proper area.
+5. The order is delivered.
+6. In the end, the waiter knows how many items were served.
+
+That is exactly the role of **ft_printf**:
+
+It acts as a central dispatcher that interprets instructions and forwards each printing task to the right internal function.
+
+---
+
+## How To Use
+
+Compile the project with:
 
 ```bash
 make
 ```
-Com o projeto compilado, o programa **ft_printf** ficará disponível para ser carregado junto com a compilação de outro programa
 
-```shell
-cc ft_printf.c convert_*.c ft_strlen.c handle*.c yourProgram.c parse*.c print*.c -I . -o myPrintf
+Once compiled, you can link your implementation with a test program containing `main`.
+
+### Example using the project source files directly
+
+```bash
+cc -Wall -Wextra -Werror ft_printf.c convert_*.c ft_strlen.c handle*.c parse*.c print*.c yourProgram.c -I . -o myPrintf
 ```
 
-Dessa forma, com esse comando, podes compilar o meu ft_printf inteiro com seu programa, aquele que detém a função **main**, ao qual exemplifiquei aqui com **yourProgram.c**, podes colocar o nome que colocaste em seu programa. 
-
-Assim, poderão chamar o **ft_printf** da mesma forma como fariam com o printf como:
+Then you can use your function like this:
 
 ```c
 ft_printf("Hello World, %s\n", "Fernando");
 ```
-Printará o "Hello World", seguido de "Fernando" e uma newline.
+
+### Example using a generated static library
+
+If your Makefile generates a library such as `libftprintf.a`, you can compile like this:
+
+```bash
+cc -Wall -Wextra -Werror yourProgram.c libftprintf.a -I . -o myPrintf
+```
+
+---
 
 ## Team
 
-O projeto **ft_printf** não é realizado em equipes dentro da 42. Trata-se de um projeto individual, começando a ser um pouco mais complexo que os demais.
+**ft_printf** is an individual project at **École 42**.
+
+It was fully developed by me.
+
+---
+
+## Final Note
+
+More than reproducing a famous standard function, **ft_printf** was an opportunity to understand formatted output from the inside.
+
+It transformed something that once looked magical into something concrete:
+
+* parsing
+* dispatching
+* variadic arguments
+* modular printing
+* character counting
+* low-level formatted output design
+
+For me, this project marked an important step forward in understanding how C really works under the hood.
+
